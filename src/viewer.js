@@ -73,18 +73,18 @@ export class Viewer {
 			camera: DEFAULT_CAMERA,
 			wireframe: false,
 			skeleton: false,
-			grid: false,
-			autoRotate: false,
+			grid: true,
+			autoRotate: true,
 
 			// Lights
 			punctualLights: true,
-			exposure: 0.0,
+			exposure: 0.8,
 			toneMapping: LinearToneMapping,
 			ambientIntensity: 0.3,
 			ambientColor: '#FFFFFF',
 			directIntensity: 0.8 * Math.PI, // TODO(#116)
-			directColor: '#FFFFFF',
-			bgColor: '#191919',
+			directColor: '#050101',
+			bgColor: '#dbe7ff',
 
 			pointSize: 1.0,
 		};
@@ -256,9 +256,13 @@ export class Viewer {
 
 		this.controls.reset();
 
-		object.position.x -= center.x;
-		object.position.y -= center.y;
-		object.position.z -= center.z;
+		// object.position.x -= center.x;
+		// object.position.y -= center.y;
+		// object.position.z -= center.z;
+
+		object.position.y -= size / 10; // move valve slightly down
+
+		object.rotation.x = Math.PI * 0.5; // rotate so text on valve face up
 
 		this.controls.maxDistance = size * 10;
 
