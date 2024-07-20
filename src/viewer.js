@@ -174,7 +174,7 @@ export class Viewer {
 		this.axesRenderer.setSize(this.axesDiv.clientWidth, this.axesDiv.clientHeight);
 	}
 
-	load(url, rootPath, assetMap) {
+	load(url, rootPath) {
 		const baseURL = LoaderUtils.extractUrlBase(url);
 
 		// Load.
@@ -190,12 +190,12 @@ export class Viewer {
 						.replace(baseURL, '')
 						.replace(/^(\.?\/)/, '');
 
-				if (assetMap.has(normalizedURL)) {
-					const blob = assetMap.get(normalizedURL);
-					const blobURL = URL.createObjectURL(blob);
-					blobURLs.push(blobURL);
-					return blobURL;
-				}
+				// if (assetMap.has(normalizedURL)) {
+				// 	const blob = assetMap.get(normalizedURL);
+				// 	const blobURL = URL.createObjectURL(blob);
+				// 	blobURLs.push(blobURL);
+				// 	return blobURL;
+				// }
 
 				return (path || '') + url;
 			});
@@ -207,10 +207,12 @@ export class Viewer {
 				.setMeshoptDecoder(MeshoptDecoder);
 
 			const blobURLs = [];
-
+			
+			//url = "/Unnamed-ZC151-04-Handle Assembly.gltf"; this works
 			loader.load(
 				url,
 				(gltf) => {
+					// console.log(url, "in loader.load");
 					window.VIEWER.json = gltf;
 
 					const scene = gltf.scene || gltf.scenes[0];
@@ -306,7 +308,7 @@ export class Viewer {
 
 		window.VIEWER.scene = this.content;
 
-		this.printGraph(this.content);
+		//this.printGraph(this.content);
 	}
 
 	printGraph(node) {

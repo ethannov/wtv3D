@@ -3,6 +3,7 @@ import { Viewer } from './viewer.js';
 import { SimpleDropzone } from 'simple-dropzone';
 import { Validator } from './validator.js';
 import { Footer } from './components/footer';
+import { setupRoutes } from './router.js';
 import queryString from 'query-string';
 
 window.VIEWER = {};
@@ -46,7 +47,7 @@ class App {
 		}
 
 		if (options.model) {
-			this.view(options.model, '', new Map());
+			this.view('options.model', '', new Map());
 		}
 	}
 
@@ -54,7 +55,7 @@ class App {
 	 * Sets up the drag-and-drop controller.
 	 */
 	createDropzone() {
-		const dropCtrl = new SimpleDropzone(this.dropEl, this.inputEl);
+		const dropCtrl = new SimpleDropzone(this.dropEl, this.inputEl);	
 		dropCtrl.on('drop', ({ files }) => this.load(files));
 		dropCtrl.on('dropstart', () => this.showSpinner());
 		dropCtrl.on('droperror', () => this.hideSpinner());
@@ -78,6 +79,7 @@ class App {
 	 * @param  {Map<string, File>} fileMap
 	 */
 	load(fileMap) {
+		console.log("files:", fileMap)
 		let rootFile;
 		let rootPath;
 		Array.from(fileMap).forEach(([path, file]) => {
@@ -91,7 +93,8 @@ class App {
 			this.onError('No .gltf or .glb asset found.');
 		}
 
-		this.view(rootFile, rootPath, fileMap);
+		//this.view(rootFile, rootPath, fileMap);
+		this.view("/Unnamed-ZC151-04-Handle Assembly.gltf", "");
 	}
 
 	/**
@@ -100,7 +103,7 @@ class App {
 	 * @param  {string} rootPath
 	 * @param  {Map<string, File>} fileMap
 	 */
-	view(rootFile, rootPath, fileMap) {
+	view(rootFile, rootPath) {
 		if (this.viewer) this.viewer.clear();
 
 		const viewer = this.viewer || this.createViewer();
@@ -112,16 +115,20 @@ class App {
 			if (typeof rootFile === 'object') URL.revokeObjectURL(fileURL);
 		};
 
+		console.log("fileURL:", fileURL)
+		console.log("rootPath:", rootPath)
+		// console.log("fileMap:", fileMap)
+
 		viewer
-			.load(fileURL, rootPath, fileMap)
+			.load(fileURL, rootPath)
 			.catch((e) => this.onError(e))
 			.then((gltf) => {
 				// TODO: GLTFLoader parsing can fail on invalid files. Ideally,
 				// we could run the validator either way.
-				if (!this.options.kiosk) {
-					this.validator.validate(fileURL, rootPath, fileMap, gltf);
-				}
-				cleanup();
+				// if (!this.options.kiosk) {
+				// 	this.validator.validate(fileURL, rootPath, gltf);
+				// }
+				// cleanup();
 			});
 	}
 
@@ -153,9 +160,13 @@ class App {
 document.body.innerHTML += Footer();
 
 document.addEventListener('DOMContentLoaded', () => {
+	console.log('added App!');
 	const app = new App(document.body, location);
 
+	setupRoutes(app);
+
 	window.VIEWER.app = app;
+	//app.view("/Unnamed-ZC151-04-Handle Assembly.gltf", "", "");
 
 	console.info('[glTF Viewer] Debugging data exported as `window.VIEWER`.');
 });
