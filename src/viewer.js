@@ -73,7 +73,7 @@ export class Viewer {
 			camera: DEFAULT_CAMERA,
 			wireframe: false,
 			skeleton: false,
-			grid: true,
+			grid: false,
 			autoRotate: true,
 
 			// Lights
