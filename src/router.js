@@ -6,6 +6,12 @@ export function setupRoutes(app) {
   router
     .on('/', () => {
       // Home page
+      app.hideAbout();
+    })
+    .on('/about', () => {
+      // About page
+      app.hideDrop();
+      app.showAbout();
     })
     .on('/model1', (match) => {
       app.view("/Unnamed-ZC151-04-Handle Assembly.gltf", "");

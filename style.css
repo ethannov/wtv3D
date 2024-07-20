@@ -23,6 +23,22 @@ body {
   position: relative;
 }
 
+.about {  
+  display: none;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: #999;
+}
+
+a:hover {
+  color: #e4e4e4;
+}
+
 .dropzone {
   display: flex;
   flex-grow: 1;

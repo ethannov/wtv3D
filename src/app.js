@@ -32,6 +32,7 @@ class App {
 		this.viewer = null;
 		this.viewerEl = null;
 		this.spinnerEl = el.querySelector('.spinner');
+		this.aboutEl = el.querySelector('.about');
 		this.dropEl = el.querySelector('.dropzone');
 		this.inputEl = el.querySelector('#file-input');
 		this.validator = new Validator(el);
@@ -155,12 +156,23 @@ class App {
 	hideSpinner() {
 		this.spinnerEl.style.display = 'none';
 	}
+
+	showAbout() {
+		this.aboutEl.style.display = 'flex';
+	}
+
+	hideAbout() {
+		this.aboutEl.style.display = 'none';
+	}
+
+	hideDrop() {
+		this.dropEl.style.display = 'none';
+	}
 }
 
 // document.body.innerHTML += Footer();
 
 document.addEventListener('DOMContentLoaded', () => {
-	console.log('added App!');
 	const app = new App(document.body, location);
 
 	setupRoutes(app);
