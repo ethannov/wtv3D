@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "public": true,
     "routes": [
         {
@@ -7,8 +8,12 @@
             "dest": "/assets/$1"
         },
         {
-            "src": "/(.*)",
+            "src": "/(.*\\.(gltf|bin|jpg|png|json))",
             "dest": "/public/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
         }
     ]
 }
