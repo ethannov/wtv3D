@@ -593,11 +593,12 @@ export class Viewer {
 		perfLi.classList.add('gui-stats');
 		perfFolder.__ul.appendChild(perfLi);
 
-		const guiWrap = document.createElement('div');
-		this.el.appendChild(guiWrap);
-		guiWrap.classList.add('gui-wrap');
-		guiWrap.appendChild(gui.domElement);
-		gui.open();
+		// Append to DOM and display GUI.
+		// const guiWrap = document.createElement('div');
+		// this.el.appendChild(guiWrap);
+		// guiWrap.classList.add('gui-wrap');
+		// guiWrap.appendChild(gui.domElement);
+		// gui.open();
 	}
 
 	updateGUI() {
