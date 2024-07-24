@@ -83,8 +83,8 @@ export class Viewer {
 			ambientIntensity: 0.3,
 			ambientColor: '#FFFFFF',
 			directIntensity: 0.8 * Math.PI, // TODO(#116)
-			directColor: '#050101',
-			bgColor: '#eb8256',
+			directColor: '#000000',
+			bgColor: '#6E6E6E',
 
 			pointSize: 1.0,
 		};
@@ -594,11 +594,11 @@ export class Viewer {
 		perfFolder.__ul.appendChild(perfLi);
 
 		// Append to DOM and display GUI.
-		// const guiWrap = document.createElement('div');
-		// this.el.appendChild(guiWrap);
-		// guiWrap.classList.add('gui-wrap');
-		// guiWrap.appendChild(gui.domElement);
-		// gui.open();
+		const guiWrap = document.createElement('div');
+		this.el.appendChild(guiWrap);
+		guiWrap.classList.add('gui-wrap');
+		guiWrap.appendChild(gui.domElement);
+		gui.open();
 	}
 
 	updateGUI() {
