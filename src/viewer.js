@@ -594,11 +594,12 @@ export class Viewer {
 		perfFolder.__ul.appendChild(perfLi);
 
 		// Append to DOM and display GUI.
-		const guiWrap = document.createElement('div');
-		this.el.appendChild(guiWrap);
-		guiWrap.classList.add('gui-wrap');
-		guiWrap.appendChild(gui.domElement);
-		gui.open();
+		// COMMENT/UNCOMMENT TO DISPLAY GUI
+		// const guiWrap = document.createElement('div');
+		// this.el.appendChild(guiWrap);
+		// guiWrap.classList.add('gui-wrap');
+		// guiWrap.appendChild(gui.domElement);
+		// gui.open();
 	}
 
 	updateGUI() {
