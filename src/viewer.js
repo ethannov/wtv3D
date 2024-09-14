@@ -84,7 +84,7 @@ export class Viewer {
 			ambientColor: '#FFFFFF',
 			directIntensity: 0.8 * Math.PI, // TODO(#116)
 			directColor: '#000000',
-			bgColor: '#6E6E6E',
+			bgColor: '#c40000',
 
 			pointSize: 1.0,
 		};
