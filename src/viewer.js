@@ -118,6 +118,7 @@ export class Viewer {
 
 		this.controls = new OrbitControls(this.defaultCamera, this.renderer.domElement);
 		this.controls.screenSpacePanning = true;
+		this.controls.enableZoom = false; // remove ability to zoom in and out
 
 		this.el.appendChild(this.renderer.domElement);
 
